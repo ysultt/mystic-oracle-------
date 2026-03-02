@@ -1,0 +1,7 @@
+{
+  "name": "Mystic Oracle - 灵境占卜",
+  "description": "一个融合塔罗牌、灵力骰子与占星术的现代占卜应用，由 AI 驱动深度解析。",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
