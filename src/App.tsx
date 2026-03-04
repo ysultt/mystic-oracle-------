@@ -93,7 +93,7 @@ export default function App() {
           <Sun className="w-6 h-6" />
         </div>
         <p className="text-stone-600 text-xs tracking-widest uppercase">
-          © 2026 Mystic Oracle · 灵境占卜
+          © 2026 Mystic Oracle. All rights reserved.
         </p>
       </footer>
     </div>

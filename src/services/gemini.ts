@@ -2,6 +2,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
 
+
 export const getTarotReading = async (cards: string[], question: string) => {
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
