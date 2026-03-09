@@ -56,16 +56,17 @@ export default function TarotSection() {
                 animate={{ rotateY: 0, opacity: 1, scale: 1 }}
                 className="w-40 h-64 glass-panel overflow-hidden flex flex-col items-center border-amber-500/30 border-2 shadow-xl shadow-purple-900/20"
               >
-                <div className="w-full h-4/5 relative">
+                <div className="w-full h-13/14 relative">
                   <img 
                     src={card.image} 
                     alt={card.name} 
                     className="w-full h-full object-cover"
+                    style={{ width:'100%', height:'auto'}}
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
-                <div className="w-full h-1/5 flex items-center justify-center bg-black/40">
+                <div className="w-full h-1/14 flex items-center justify-center bg-black/40">
                   <span className="text-amber-200 font-serif text-sm tracking-widest">{card.name}</span>
                 </div>
               </motion.div>
