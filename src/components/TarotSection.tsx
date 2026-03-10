@@ -42,7 +42,7 @@ export default function TarotSection() {
     <div className="max-w-4xl mx-auto p-6">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-serif gold-text mb-4">神秘塔罗</h2>
-        <p className="text-stone-400">静心冥想你的问题，抽取三张牌开启启示</p>
+        <p className="text-stone-300/75">静心冥想你的问题，抽取三张牌开启启示</p>
       </div>
 
       {!reading ? (
@@ -63,17 +63,17 @@ export default function TarotSection() {
                     style={{ width:'100%', height:'auto'}}
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1b102f]/75 via-[#1b102f]/15 to-transparent" />
                 </div>
-                <div className="w-full h-1/14 flex items-center justify-center bg-black/40">
-                  <span className="text-amber-200 font-serif text-sm tracking-widest">{card.name}</span>
+                <div className="w-full h-1/14 flex items-center justify-center bg-[#160d2d]/55">
+                  <span className="text-amber-100 font-serif text-sm tracking-widest">{card.name}</span>
                 </div>
               </motion.div>
             ))}
             {selectedCards.length < 3 && (
               <button
                 onClick={handleDraw}
-                className="w-40 h-64 glass-panel flex flex-col items-center justify-center gap-2 transition-colors group border-dashed border-2 border-violet-200/20 hover:border-amber-200/25 hover:bg-white/12"
+                className="theme-button-secondary w-40 h-64 glass-panel flex-col transition-colors group border-dashed border-2 border-violet-200/20 hover:border-amber-200/25"
               >
                 <div className="w-12 h-12 rounded-full bg-violet-300/16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-purple-950/15">
                   <Sparkles className="w-6 h-6 text-amber-200" />
@@ -94,12 +94,12 @@ export default function TarotSection() {
                 placeholder="在此输入你的问题..."
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500/50 transition-colors text-center"
+                className="theme-input text-center"
               />
               <button
                 onClick={handleInterpret}
                 disabled={loading}
-                className="w-full py-4 bg-purple-600 hover:bg-purple-500 disabled:bg-stone-700 text-white rounded-xl font-medium transition-all shadow-lg shadow-purple-900/20 flex items-center justify-center gap-2"
+                className="theme-button-primary"
               >
                 {loading ? '正在通灵中...' : '开启 AI 深度解析'}
               </button>
@@ -112,9 +112,9 @@ export default function TarotSection() {
           animate={{ opacity: 1 }}
           className="glass-panel p-8 space-y-6"
         >
-          <div className="flex justify-between items-center border-b border-white/10 pb-4">
-            <h3 className="text-2xl font-serif text-amber-200">占卜结果</h3>
-            <button onClick={reset} className="text-stone-400 hover:text-white flex items-center gap-1 text-sm">
+          <div className="flex justify-between items-center border-b border-amber-200/12 pb-4">
+            <h3 className="text-2xl font-serif text-amber-100">占卜结果</h3>
+            <button onClick={reset} className="theme-action-link flex items-center gap-1">
               <RotateCcw className="w-4 h-4" /> 重新占卜
             </button>
           </div>

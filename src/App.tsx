@@ -49,18 +49,18 @@ export default function App() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as Tab)}
                 className={cn(
-                  "relative px-6 py-2.5 rounded-2xl text-sm font-medium transition-all flex items-center gap-2 overflow-hidden",
-                  isActive ? "text-amber-100" : "text-violet-200/70 hover:text-amber-100"
+                  "theme-tab group",
+                  isActive ? "theme-tab-active" : "text-violet-200/70 hover:text-amber-100"
                 )}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 rounded-2xl border border-amber-200/20 bg-gradient-to-r from-violet-400/20 via-fuchsia-300/18 to-amber-300/18 shadow-lg shadow-purple-950/20"
+                    className="theme-tab-active-glow absolute inset-0 rounded-2xl"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
-                <Icon className={cn("relative z-10 w-4 h-4", isActive ? "text-amber-200" : "text-violet-200/60")} />
+                <Icon className={cn("relative z-10 w-4 h-4 transition-colors", isActive ? "text-amber-200" : "text-violet-200/60 group-hover:text-amber-100")} />
                 <span className="relative z-10">{tab.label}</span>
               </button>
             );

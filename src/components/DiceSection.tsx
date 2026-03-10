@@ -62,7 +62,7 @@ export default function DiceSection() {
             <button
               onClick={rollDice}
               disabled={rolling}
-              className="w-full py-4 glass-panel hover:bg-white/12 transition-all flex items-center justify-center gap-2 text-amber-100 border border-amber-200/15"
+              className="theme-button-secondary w-full py-4 glass-panel border border-amber-200/15"
             >
               <Dices className="w-5 h-5 text-violet-100" />
               {rolling ? '骰子旋转中...' : '掷出骰子'}
@@ -79,12 +79,12 @@ export default function DiceSection() {
                   placeholder="你想问什么？"
                   value={question}
                   onChange={(e) => setQuestion(e.target.value)}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-amber-500/50 transition-colors"
+                  className="theme-input"
                 />
                 <button
                   onClick={handleInterpret}
                   disabled={loading}
-                  className="w-full py-4 bg-amber-600 hover:bg-amber-500 text-white rounded-xl font-medium transition-all"
+                  className="theme-button-primary"
                 >
                   {loading ? '正在解析天意...' : '获取骰子启示'}
                 </button>

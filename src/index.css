@@ -6,15 +6,80 @@
   --font-serif: "Playfair Display", serif;
 }
 
+@keyframes celestial-star-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-1.5%, 1.25%, 0) scale(1.02);
+  }
+  100% {
+    transform: translate3d(1.5%, -1%, 0) scale(1);
+  }
+}
+
+@keyframes celestial-mist-float {
+  0% {
+    transform: translate3d(-1%, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(1.5%, -1.5%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(0.5%, 1%, 0) scale(1.01);
+  }
+}
+
 @layer base {
   body {
     @apply bg-[#2a1b4a] text-stone-200 min-h-screen selection:bg-fuchsia-400/30;
+    position: relative;
+    overflow-x: hidden;
     background:
       radial-gradient(circle at 50% 0%, rgba(196, 181, 253, 0.34) 0%, transparent 36%),
       radial-gradient(circle at 0% 100%, rgba(168, 85, 247, 0.24) 0%, transparent 42%),
       radial-gradient(circle at 100% 100%, rgba(251, 191, 36, 0.12) 0%, transparent 36%),
       linear-gradient(180deg, #4c2f7a 0%, #352055 42%, #24153f 100%);
     background-attachment: fixed;
+  }
+
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    inset: -8%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::before {
+    opacity: 0.26;
+    background:
+      radial-gradient(1.5px 1.5px at 12% 18%, rgba(255, 255, 255, 0.7) 0%, transparent 72%),
+      radial-gradient(1.5px 1.5px at 24% 72%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+      radial-gradient(2px 2px at 38% 26%, rgba(250, 204, 21, 0.35) 0%, transparent 72%),
+      radial-gradient(1.5px 1.5px at 58% 14%, rgba(255, 255, 255, 0.6) 0%, transparent 68%),
+      radial-gradient(1.5px 1.5px at 72% 64%, rgba(221, 214, 254, 0.55) 0%, transparent 68%),
+      radial-gradient(2px 2px at 84% 32%, rgba(250, 204, 21, 0.28) 0%, transparent 70%),
+      radial-gradient(1.5px 1.5px at 90% 80%, rgba(255, 255, 255, 0.45) 0%, transparent 68%);
+    animation: celestial-star-drift 34s linear infinite;
+  }
+
+  body::after {
+    opacity: 0.5;
+    filter: blur(34px);
+    background:
+      radial-gradient(circle at 18% 20%, rgba(196, 181, 253, 0.14) 0%, transparent 22%),
+      radial-gradient(circle at 78% 24%, rgba(244, 114, 182, 0.08) 0%, transparent 18%),
+      radial-gradient(circle at 68% 72%, rgba(251, 191, 36, 0.08) 0%, transparent 18%),
+      radial-gradient(circle at 34% 78%, rgba(168, 85, 247, 0.12) 0%, transparent 22%);
+    animation: celestial-mist-float 26s ease-in-out infinite alternate;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
   }
 }
 
@@ -43,20 +108,88 @@
 }
 
 .theme-button-primary {
-  @apply w-full py-4 rounded-xl font-medium transition-all text-white flex items-center justify-center gap-2 disabled:cursor-not-allowed;
+  @apply w-full py-4 rounded-xl font-medium text-white flex items-center justify-center gap-2 disabled:cursor-not-allowed;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 220ms ease, box-shadow 260ms ease, filter 260ms ease, background-position 320ms ease;
   background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 55%, #f59e0b 100%);
-  box-shadow: 0 14px 34px rgba(126, 34, 206, 0.28);
+  background-size: 170% 170%;
+  background-position: 0% 50%;
+  box-shadow:
+    0 14px 34px rgba(126, 34, 206, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -10px 24px rgba(109, 40, 217, 0.16);
 }
 
 .theme-button-primary:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 40px rgba(126, 34, 206, 0.34);
-  filter: brightness(1.04);
+  transform: translateY(-2px) scale(1.01);
+  background-position: 100% 50%;
+  box-shadow:
+    0 20px 46px rgba(126, 34, 206, 0.34),
+    0 0 28px rgba(251, 191, 36, 0.16),
+    0 0 18px rgba(196, 181, 253, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  filter: brightness(1.05);
+}
+
+.theme-button-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow:
+    0 10px 24px rgba(126, 34, 206, 0.24),
+    0 0 16px rgba(251, 191, 36, 0.12);
 }
 
 .theme-button-primary:disabled {
   background: linear-gradient(135deg, rgba(87, 83, 78, 0.9) 0%, rgba(68, 64, 60, 0.9) 100%);
   box-shadow: none;
+}
+
+.theme-button-secondary {
+  @apply rounded-2xl text-amber-100 flex items-center justify-center gap-2;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 220ms ease, box-shadow 260ms ease, border-color 260ms ease, background-color 260ms ease, color 260ms ease;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(168, 85, 247, 0.14) 100%);
+  border: 1px solid rgba(250, 204, 21, 0.14);
+  box-shadow:
+    0 12px 28px rgba(46, 16, 101, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.theme-button-secondary:hover {
+  transform: translateY(-1px);
+  color: rgb(255 251 235 / 0.98);
+  border-color: rgba(253, 224, 71, 0.26);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(192, 132, 252, 0.18) 100%);
+  box-shadow:
+    0 16px 36px rgba(76, 29, 149, 0.22),
+    0 0 24px rgba(251, 191, 36, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.theme-tab {
+  @apply relative px-6 py-2.5 rounded-2xl text-sm font-medium flex items-center gap-2 overflow-hidden;
+  transition: transform 220ms ease, color 220ms ease, text-shadow 220ms ease;
+}
+
+.theme-tab:hover {
+  transform: translateY(-1px);
+  text-shadow: 0 0 14px rgba(251, 191, 36, 0.18);
+}
+
+.theme-tab-active {
+  color: rgb(255 251 235);
+}
+
+.theme-tab-active-glow {
+  border: 1px solid rgba(253, 224, 71, 0.18);
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.26) 0%, rgba(216, 180, 254, 0.16) 48%, rgba(251, 191, 36, 0.2) 100%);
+  box-shadow:
+    0 10px 24px rgba(76, 29, 149, 0.2),
+    0 0 20px rgba(251, 191, 36, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .theme-action-link {
@@ -66,6 +199,7 @@
 
 .theme-action-link:hover {
   color: rgb(253 230 138 / 0.95);
+  text-shadow: 0 0 12px rgba(251, 191, 36, 0.16);
 }
 
 .markdown-body {
@@ -79,4 +213,17 @@
 }
 .markdown-body ul {
   @apply list-disc pl-5 space-y-2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
+  }
+
+  .theme-button-primary,
+  .theme-button-secondary,
+  .theme-tab {
+    transition: none;
+  }
 }
