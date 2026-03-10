@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { Sparkles, RotateCcw } from 'lucide-react';
 import { TAROT_DECK, TarotCard } from '../constants';
 import { getTarotReading } from '../services/gemini';
 import Markdown from 'react-markdown';
-import { cn } from '../lib/utils';
 
 export default function TarotSection() {
   const [selectedCards, setSelectedCards] = useState<TarotCard[]>([]);
@@ -49,12 +48,12 @@ export default function TarotSection() {
       {!reading ? (
         <div className="space-y-8">
           <div className="flex justify-center gap-6 flex-wrap min-h-[280px]">
-            {selectedCards.map((card, i) => (
+            {selectedCards.map((card) => (
               <motion.div
                 key={card.name}
                 initial={{ rotateY: 180, opacity: 0, scale: 0.8 }}
                 animate={{ rotateY: 0, opacity: 1, scale: 1 }}
-                className="w-40 h-64 glass-panel overflow-hidden flex flex-col items-center border-amber-500/30 border-2 shadow-xl shadow-purple-900/20"
+                className="w-40 h-64 glass-panel overflow-hidden flex flex-col items-center border-2 border-amber-200/25 shadow-xl shadow-purple-950/25"
               >
                 <div className="w-full h-13/14 relative">
                   <img 
@@ -74,12 +73,12 @@ export default function TarotSection() {
             {selectedCards.length < 3 && (
               <button
                 onClick={handleDraw}
-                className="w-40 h-64 glass-panel flex flex-col items-center justify-center gap-2 hover:bg-white/10 transition-colors group border-dashed border-2 border-white/20"
+                className="w-40 h-64 glass-panel flex flex-col items-center justify-center gap-2 transition-colors group border-dashed border-2 border-violet-200/20 hover:border-amber-200/25 hover:bg-white/12"
               >
-                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Sparkles className="w-6 h-6 text-purple-400" />
+                <div className="w-12 h-12 rounded-full bg-violet-300/16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-purple-950/15">
+                  <Sparkles className="w-6 h-6 text-amber-200" />
                 </div>
-                <span className="text-stone-400 text-sm">抽取第 {selectedCards.length + 1} 张</span>
+                <span className="text-violet-100/80 text-sm">抽取第 {selectedCards.length + 1} 张</span>
               </button>
             )}
           </div>

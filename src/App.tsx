@@ -24,23 +24,23 @@ export default function App() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium tracking-widest uppercase mb-4"
+          className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 border border-amber-200/20 text-amber-100 text-xs font-medium tracking-widest uppercase mb-4 shadow-lg shadow-purple-950/20"
         >
-          <Moon className="w-3 h-3" />
+          <Moon className="w-3 h-3 text-violet-200" />
           Mystic Oracle
-          <Sun className="w-3 h-3" />
+          <Sun className="w-3 h-3 text-amber-200" />
         </motion.div>
         <h1 className="text-5xl md:text-7xl font-serif gold-text tracking-tighter mb-4">
           灵境占卜
         </h1>
-        <p className="text-stone-500 max-w-md mx-auto text-sm md:text-base">
+        <p className="text-stone-300/80 max-w-md mx-auto text-sm md:text-base">
           连接古老智慧与现代 AI，在迷雾中为你指引方向
         </p>
       </header>
 
       {/* Navigation */}
       <nav className="sticky top-4 z-50 flex justify-center px-6 mb-12">
-        <div className="glass-panel p-1.5 flex gap-1">
+        <div className="glass-panel p-1.5 flex gap-1 border border-amber-200/15 bg-white/8">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -49,18 +49,18 @@ export default function App() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as Tab)}
                 className={cn(
-                  "relative px-6 py-2.5 rounded-2xl text-sm font-medium transition-all flex items-center gap-2",
-                  isActive ? "text-amber-200" : "text-stone-500 hover:text-stone-300"
+                  "relative px-6 py-2.5 rounded-2xl text-sm font-medium transition-all flex items-center gap-2 overflow-hidden",
+                  isActive ? "text-amber-100" : "text-violet-200/70 hover:text-amber-100"
                 )}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-white/10 rounded-2xl"
+                    className="absolute inset-0 rounded-2xl border border-amber-200/20 bg-gradient-to-r from-violet-400/20 via-fuchsia-300/18 to-amber-300/18 shadow-lg shadow-purple-950/20"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
-                <Icon className={cn("w-4 h-4", isActive ? "text-amber-400" : "text-stone-600")} />
+                <Icon className={cn("relative z-10 w-4 h-4", isActive ? "text-amber-200" : "text-violet-200/60")} />
                 <span className="relative z-10">{tab.label}</span>
               </button>
             );
@@ -86,13 +86,13 @@ export default function App() {
       </main>
 
       {/* Footer Decoration */}
-      <footer className="mt-20 py-12 border-t border-white/5 text-center">
-        <div className="flex justify-center gap-8 opacity-20 grayscale mb-6">
+      <footer className="mt-20 py-12 border-t border-amber-200/10 text-center">
+        <div className="flex justify-center gap-8 opacity-30 mb-6 text-violet-200/70">
           <Moon className="w-6 h-6" />
-          <Star className="w-6 h-6" />
+          <Star className="w-6 h-6 text-amber-200/80" />
           <Sun className="w-6 h-6" />
         </div>
-        <p className="text-stone-600 text-xs tracking-widest uppercase">
+        <p className="text-violet-200/45 text-xs tracking-widest uppercase">
           © 2026 Mystic Oracle. All rights reserved.
         </p>
       </footer>

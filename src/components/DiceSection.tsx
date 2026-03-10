@@ -39,7 +39,7 @@ export default function DiceSection() {
     <div className="max-w-2xl mx-auto p-6">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-serif gold-text mb-4">灵力骰子</h2>
-        <p className="text-stone-400">随机的律动，藏着宇宙的暗示</p>
+        <p className="text-stone-300/75">随机的律动，藏着宇宙的暗示</p>
       </div>
 
       <div className="flex flex-col items-center gap-8">
@@ -51,7 +51,7 @@ export default function DiceSection() {
               scale: [1, 1.2, 1]
             } : {}}
             transition={{ duration: 1, ease: "easeInOut" }}
-            className="w-full h-full glass-panel flex items-center justify-center text-5xl font-serif text-amber-400 border-2 border-amber-500/30 shadow-2xl shadow-amber-500/10"
+            className="w-full h-full glass-panel flex items-center justify-center text-5xl font-serif text-amber-100 border-2 border-amber-200/25 shadow-2xl shadow-purple-950/20"
           >
             {diceValue || '?'}
           </motion.div>
@@ -62,9 +62,9 @@ export default function DiceSection() {
             <button
               onClick={rollDice}
               disabled={rolling}
-              className="w-full py-4 glass-panel hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-amber-200"
+              className="w-full py-4 glass-panel hover:bg-white/12 transition-all flex items-center justify-center gap-2 text-amber-100 border border-amber-200/15"
             >
-              <Dices className="w-5 h-5" />
+              <Dices className="w-5 h-5 text-violet-100" />
               {rolling ? '骰子旋转中...' : '掷出骰子'}
             </button>
 
@@ -97,9 +97,9 @@ export default function DiceSection() {
             animate={{ opacity: 1 }}
             className="glass-panel p-8 w-full space-y-4"
           >
-            <div className="flex justify-between items-center border-b border-white/10 pb-4">
-              <span className="text-amber-200 font-serif">骰子点数: {diceValue}</span>
-              <button onClick={() => { setInterpretation(null); setDiceValue(null); }} className="text-stone-400 hover:text-white flex items-center gap-1 text-sm">
+            <div className="flex justify-between items-center border-b border-amber-200/12 pb-4">
+              <span className="text-amber-100 font-serif">骰子点数: {diceValue}</span>
+              <button onClick={() => { setInterpretation(null); setDiceValue(null); }} className="theme-action-link flex items-center gap-1">
                 <RotateCcw className="w-4 h-4" /> 重新掷骰
               </button>
             </div>
